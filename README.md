@@ -13,7 +13,6 @@
 - [ ] Kubernetes
 - [ ] CI/CD
 - [ ] Testes de integração
-- [ ] Integrar com bancos de dados NoSQL (MongoDB)
 - [ ] Conseguir criar um sistema de Cache
 - [ ] Criar e integrar com mensageria
 - [ ] Criar um sistema de logs
