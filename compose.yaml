@@ -1,12 +1,13 @@
 services:
-  mongodb:
-    image: 'mongo:latest'
+  postgres:
+    image: 'postgres:11'
+    restart: always
+    container_name: 'AvaliationPostgres'
     environment:
-      - 'MONGO_INITDB_DATABASE=mydatabase'
-      - 'MONGO_INITDB_ROOT_PASSWORD=secret'
-      - 'MONGO_INITDB_ROOT_USERNAME=root'
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: root
     ports:
-      - '27017'
+      - '5432:5432'
   redis:
     image: 'redis:latest'
     ports:
