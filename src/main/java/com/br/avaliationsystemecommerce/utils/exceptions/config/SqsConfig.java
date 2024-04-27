@@ -11,11 +11,13 @@ import java.net.URI;
 @Configuration
 public class SqsConfig {
 
+    private static final String urlAws = System.getenv("URL_AWS");
+
     @Bean
     public SqsAsyncClient sqsAsyncClient() {
         return SqsAsyncClient.builder()
                 .credentialsProvider(ProfileCredentialsProvider.create("localstack"))
-                .endpointOverride(URI.create("http://127.0.0.1:4566"))
+                .endpointOverride(URI.create(System.getenv(urlAws)))
                 .region(Region.US_EAST_1)
                 .build();
     }

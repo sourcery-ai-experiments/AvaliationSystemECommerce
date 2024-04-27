@@ -15,6 +15,6 @@
 - [ ] Testes de integração
 - [x] Conseguir criar um sistema de Cache
 - [x] Paginação
-- [ ] Criar e integrar com mensageria
+- [X] Criar e integrar com mensageria
 - [x] Criar um sistema de logs
 - [ ] Criar um sistema de Observabilidade
