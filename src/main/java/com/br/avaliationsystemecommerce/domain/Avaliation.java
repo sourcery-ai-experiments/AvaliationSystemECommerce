@@ -3,6 +3,8 @@ package com.br.avaliationsystemecommerce.domain;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Entity
 @Data
 public class Avaliation {
@@ -15,7 +17,7 @@ public class Avaliation {
     private String comment;
 
     @Column(nullable = false)
-    private Float avaliation;
+    private BigDecimal avaliation;
 
     private Long productId;
 
