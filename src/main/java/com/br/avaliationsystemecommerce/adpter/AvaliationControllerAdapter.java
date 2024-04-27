@@ -8,6 +8,7 @@ import com.br.avaliationsystemecommerce.dto.AvaliationRequest;
 import com.br.avaliationsystemecommerce.port.AvaliationControllerPort;
 import com.br.avaliationsystemecommerce.service.AvaliationServicePersistence;
 import com.br.avaliationsystemecommerce.service.AvaliationServiceReading;
+import com.br.avaliationsystemecommerce.utils.exceptions.ProductCommentRetrievalException;
 import io.swagger.v3.oas.models.parameters.QueryParameter;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
@@ -45,7 +46,7 @@ public class AvaliationControllerAdapter implements AvaliationControllerPort {
     public ResponseEntity<AvaliationCommentsOutput> getCommentsProduct(
             @PathVariable Long productId,
             @RequestParam(name = "page", defaultValue = "0", required = false) @Min(0) Integer page
-    ) {
+    ) throws ProductCommentRetrievalException {
         log.info("Getting comments for product {}", productId);
         AvaliationCommentsOutput comments = avaliationServiceReading.getCommentsProduct(productId, page);
         return ResponseEntity.ok(comments);

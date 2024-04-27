@@ -5,6 +5,7 @@ import com.br.avaliationsystemecommerce.dto.AvaliationAverageOutput;
 import com.br.avaliationsystemecommerce.dto.AvaliationCommentsOutput;
 import com.br.avaliationsystemecommerce.dto.MetaData;
 import com.br.avaliationsystemecommerce.port.AvaliationRepository;
+import com.br.avaliationsystemecommerce.utils.exceptions.ProductCommentRetrievalException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
@@ -23,7 +24,7 @@ public class AvaliationServiceReading {
     private AvaliationRepository avaliationRepository;
 
     @Cacheable(value = "comments_product", key = "#productId + 0")
-    public AvaliationCommentsOutput getCommentsProduct(Long productId, Integer page) {
+    public AvaliationCommentsOutput getCommentsProduct(Long productId, Integer page) throws ProductCommentRetrievalException {
         log.info("Getting comments for product {}, Page {}", productId, page);
         Pageable pageable = Pageable.ofSize(10).withPage(page);
         try{
@@ -34,7 +35,7 @@ public class AvaliationServiceReading {
             );
         } catch (Exception e) {
             log.error("Error getting comments for product {}", productId);
-            throw  new RuntimeException("Error getting comments for product " + productId, e);
+            throw  new ProductCommentRetrievalException("Error getting comments for product " + productId, e);
         }
     }
 
