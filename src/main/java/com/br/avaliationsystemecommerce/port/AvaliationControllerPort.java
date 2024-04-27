@@ -1,5 +1,7 @@
 package com.br.avaliationsystemecommerce.port;
 
+import com.br.avaliationsystemecommerce.dto.AvaliationAverageOutput;
+import com.br.avaliationsystemecommerce.dto.AvaliationCommentsOutput;
 import com.br.avaliationsystemecommerce.dto.AvaliationRequest;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
@@ -12,11 +14,10 @@ public interface AvaliationControllerPort {
     ResponseEntity<?> createAvaliation(@RequestBody @Valid AvaliationRequest avaliationRequest);
 
     @GetMapping("/{productId}")
-    ResponseEntity<?> getCommentsProduct(@PathVariable Long productId,
-                                         @RequestParam(name = "page", defaultValue = "0", required = false) @Min(0) Integer page,
-                                         @RequestParam(name = "size", defaultValue = "10", required = false) @Min(1) Integer size);
+    ResponseEntity<AvaliationCommentsOutput> getCommentsProduct(@PathVariable Long productId,
+                                                                @RequestParam(name = "page", defaultValue = "0", required = false) @Min(0) Integer page);
 
     @GetMapping("/average/{productId}")
-    ResponseEntity<?> getAverageProduct(@PathVariable Long productId);
+    ResponseEntity<AvaliationAverageOutput> getAverageProduct(@PathVariable Long productId);
 
 }

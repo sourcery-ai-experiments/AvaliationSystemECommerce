@@ -13,7 +13,7 @@
 - [ ] Kubernetes
 - [ ] CI/CD
 - [ ] Testes de integração
-- [ ] Conseguir criar um sistema de Cache
+- [x] Conseguir criar um sistema de Cache
 - [x] Paginação
 - [ ] Criar e integrar com mensageria
 - [ ] Criar um sistema de logs
