@@ -1,4 +1,4 @@
-package com.br.avaliationsystemecommerce;
+package com.br.avaliationsystemecommerce.utils.exceptions.config;
 
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;

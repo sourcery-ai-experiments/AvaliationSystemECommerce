@@ -16,5 +16,5 @@
 - [x] Conseguir criar um sistema de Cache
 - [x] Paginação
 - [ ] Criar e integrar com mensageria
-- [ ] Criar um sistema de logs
+- [x] Criar um sistema de logs
 - [ ] Criar um sistema de Observabilidade
