@@ -23,7 +23,7 @@ public class AvaliationServiceReading {
 
     private AvaliationRepository avaliationRepository;
 
-    @Cacheable(value = "comments_product", key = "#productId + 0")
+    @Cacheable(value = "comments_product", key = "#productId + 0", unless="#result.avaliations.size() == 0")
     public AvaliationCommentsOutput getCommentsProduct(Long productId, Integer page) throws ProductCommentRetrievalException {
         log.info("Getting comments for product {}, Page {}", productId, page);
         Pageable pageable = Pageable.ofSize(10).withPage(page);
@@ -39,7 +39,7 @@ public class AvaliationServiceReading {
         }
     }
 
-    @Cacheable(value = "average_product", key = "#productId")
+    @Cacheable(value = "average_product", key = "#productId", unless="#result.average == 0")
     public AvaliationAverageOutput getAverageProduct(Long productId) {
         try{
             BigDecimal average = avaliationRepository.getAverageProduct(productId);
