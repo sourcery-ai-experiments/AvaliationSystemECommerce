@@ -3,6 +3,7 @@ package com.br.avaliationsystemecommerce.adpter;
 
 import com.br.avaliationsystemecommerce.domain.Avaliation;
 import com.br.avaliationsystemecommerce.dto.AvaliationAverageOutput;
+import com.br.avaliationsystemecommerce.dto.AvaliationCommentsOutput;
 import com.br.avaliationsystemecommerce.dto.AvaliationRequest;
 import com.br.avaliationsystemecommerce.port.AvaliationControllerPort;
 import com.br.avaliationsystemecommerce.service.AvaliationServicePersistence;
@@ -38,12 +39,11 @@ public class AvaliationControllerAdapter implements AvaliationControllerPort {
     }
 
     @Override
-    public ResponseEntity<List<Avaliation>> getCommentsProduct(
+    public ResponseEntity<AvaliationCommentsOutput> getCommentsProduct(
             @PathVariable Long productId,
-            @RequestParam(name = "page", defaultValue = "0", required = false) @Min(0) Integer page,
-            @RequestParam(name = "size", defaultValue = "10", required = false) @Min(1) Integer size
+            @RequestParam(name = "page", defaultValue = "0", required = false) @Min(0) Integer page
     ) {
-        List<Avaliation> comments = avaliationServiceReading.getCommentsProduct(productId, page, size);
+        AvaliationCommentsOutput comments = avaliationServiceReading.getCommentsProduct(productId, page);
         return ResponseEntity.ok(comments);
     }
 

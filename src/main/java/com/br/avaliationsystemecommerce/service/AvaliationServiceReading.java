@@ -2,8 +2,11 @@ package com.br.avaliationsystemecommerce.service;
 
 import com.br.avaliationsystemecommerce.domain.Avaliation;
 import com.br.avaliationsystemecommerce.dto.AvaliationAverageOutput;
+import com.br.avaliationsystemecommerce.dto.AvaliationCommentsOutput;
+import com.br.avaliationsystemecommerce.dto.MetaData;
 import com.br.avaliationsystemecommerce.port.AvaliationRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -17,11 +20,17 @@ public class AvaliationServiceReading {
 
     private AvaliationRepository avaliationRepository;
 
-    public List<Avaliation> getCommentsProduct(Long productId, Integer page, Integer size) {
-        Pageable pageable = Pageable.ofSize(size > 25 ? 25 : size).withPage(page);
-        return avaliationRepository.findByProductId(productId, pageable);
+    @Cacheable(value = "comments_product", key = "#productId + 0")
+    public AvaliationCommentsOutput getCommentsProduct(Long productId, Integer page) {
+        Pageable pageable = Pageable.ofSize(10).withPage(page);
+        List<Avaliation> comments = avaliationRepository.findByProductId(productId, pageable);
+        return new AvaliationCommentsOutput(
+                new MetaData(page, 10),
+                comments
+        );
     }
 
+    @Cacheable(value = "average_product", key = "#productId")
     public AvaliationAverageOutput getAverageProduct(Long productId) {
         BigDecimal average = avaliationRepository.getAverageProduct(productId);
         if (average == null) {
