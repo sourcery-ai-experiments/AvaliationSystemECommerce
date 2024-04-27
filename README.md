@@ -14,6 +14,7 @@
 - [ ] CI/CD
 - [ ] Testes de integração
 - [ ] Conseguir criar um sistema de Cache
+- [ ] Paginação
 - [ ] Criar e integrar com mensageria
 - [ ] Criar um sistema de logs
 - [ ] Criar um sistema de Observabilidade
