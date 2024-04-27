@@ -12,13 +12,13 @@ import java.net.URI;
 public class SqsConfig {
 
     private static final String urlAws = System.getenv("URL_AWS");
-    private static final String profileAws = System.getenv("AWS_CREDENTIALS");
+    private static final String profileAws = System.getenv("PROFILE_AWS");
 
     @Bean
     public SqsAsyncClient sqsAsyncClient() {
         return SqsAsyncClient.builder()
                 .credentialsProvider(ProfileCredentialsProvider.create(profileAws))
-                .endpointOverride(URI.create(System.getenv(urlAws)))
+                .endpointOverride(URI.create(urlAws))
                 .region(Region.US_EAST_1)
                 .build();
     }
