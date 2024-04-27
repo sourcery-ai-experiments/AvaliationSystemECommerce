@@ -9,7 +9,7 @@
 
 ## O que eu espero Aprender com este projeto?
 
-- [ ] Docker
+- [x] Docker
 - [ ] Kubernetes
 - [ ] CI/CD
 - [ ] Testes de integração
